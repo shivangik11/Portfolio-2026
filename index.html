@@ -209,9 +209,12 @@ dl { margin: 0; }
 
 /* Workflow Builder illustration: a simplified drawing of the product's editor */
 .wb { display: block; width: 100%; height: auto; }
-.wb-video { aspect-ratio: 30 / 17; object-fit: cover; background: var(--wb-canvas); border-radius: 2% / 3.5%; overflow: hidden; }
-#wb-slot-case, .cs-art-bare { background: none; border: 0; padding: 0; }
-.cs-art-bare .wb-video { box-shadow: 0 14px 40px rgba(30, 42, 68, 0.14); }
+.wb-video { aspect-ratio: 2938 / 1666; object-fit: cover; background: var(--wb-canvas); border-radius: max(16px, 2%) / max(16px, 3.5%); overflow: hidden; border: 0; outline: 0; }
+#wb-slot-case, .cs-feature-art.cs-art-bare { background: none; border: 0; padding: 0; }
+#wb-slot-case .wb-video, .cs-art-bare .wb-video { box-shadow: none; }
+/* A feature whose video needs the full width: text above, video below. */
+.cs-feature.cs-feature-wide { grid-template-columns: minmax(0, 1fr); }
+.cs-features .cs-feature.cs-feature-wide .cs-feature-art { order: 0; }
 .wb text { font-family: var(--font-display); fill: var(--wb-ink); }
 .wb .wb-t { font-size: 12px; font-weight: 600; }
 .wb .wb-s { font-size: 9px; font-weight: 500; }
@@ -1689,7 +1692,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           </div>
         </article>
 
-        <article class="cs-feature" data-reveal>
+        <article class="cs-feature cs-feature-wide" data-reveal>
           <div class="cs-feature-text">
             <h3>Brand it without writing code</h3>
             <p>Administrators change primary and secondary colours, update screen text and upload a company logo, all through the interface.</p>
