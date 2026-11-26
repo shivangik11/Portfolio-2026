@@ -209,6 +209,9 @@ dl { margin: 0; }
 
 /* Workflow Builder illustration: a simplified drawing of the product's editor */
 .wb { display: block; width: 100%; height: auto; }
+.wb-video { aspect-ratio: 30 / 17; object-fit: cover; background: var(--wb-canvas); border-radius: 2% / 3.5%; overflow: hidden; }
+#wb-slot-case, .cs-art-bare { background: none; border: 0; padding: 0; }
+.cs-art-bare .wb-video { box-shadow: 0 14px 40px rgba(30, 42, 68, 0.14); }
 .wb text { font-family: var(--font-display); fill: var(--wb-ink); }
 .wb .wb-t { font-size: 12px; font-weight: 600; }
 .wb .wb-s { font-size: 9px; font-weight: 500; }
@@ -981,7 +984,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <ul class="mono">
           <li><span>Email</span><span>shivangik11@gmail.com</span></li>
           <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/shivangik11" target="_blank" rel="noopener">linkedin.com/in/shivangik11</a></li>
-          <li><span>R&eacute;sum&eacute;</span><a href="https://drive.google.com/file/d/1BnHEVdXuI6pA_oMZdD-20LMjRYibyKeh/view?usp=sharing" target="_blank" rel="noopener">View PDF &nearr;</a></li>
+          <li><span>R&eacute;sum&eacute;</span><a href="https://drive.google.com/file/d/1pW0wqRpBwbvyDantudSKoavA_ags9NlI/view?usp=sharing" target="_blank" rel="noopener">View PDF &nearr;</a></li>
         </ul>
       </div>
     </div>
@@ -1547,7 +1550,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div><dt>Built for</dt><dd>Security administrators, enterprise HR</dd></div>
         <div><dt>Deliverables</dt><dd>Spec, interactions, working prototype</dd></div>
       </dl>
-      <div class="cs-art" id="wb-slot-case"></div>
+      <div class="cs-art" id="wb-slot-case">
+        <video class="wb wb-video" src="workflow-builder.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the Workflow Builder: adding a Face comparison node from the node library to a KYC verification workflow and configuring it in the settings panel"></video>
+      </div>
     </div>
   </div>
 
@@ -1690,24 +1695,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
             <p>Administrators change primary and secondary colours, update screen text and upload a company logo, all through the interface.</p>
             <p>HTML and CSS editing supports deeper visual customisation, and a JavaScript node gives technical users extra flexibility.</p>
           </div>
-          <div class="cs-feature-art">
-            <svg class="wb" viewBox="0 0 360 220" role="img" aria-label="Branding controls with colour swatches and a logo upload, beside a phone preview using the brand colour">
-              <rect class="wb-canvas" width="360" height="220"/>
-              <rect class="wb-p" x="20" y="20" width="170" height="180" rx="10"/>
-              <rect class="wb-bd" x="34" y="36" width="70" height="5" rx="2.5"/>
-              <circle class="wb-indigo" cx="44" cy="62" r="10"/><rect class="wb-b" x="62" y="60" width="60" height="4" rx="2"/>
-              <circle class="wb-green" cx="44" cy="90" r="10"/><rect class="wb-b" x="62" y="88" width="72" height="4" rx="2"/>
-              <rect class="wb-bd" x="34" y="116" width="40" height="5" rx="2.5"/>
-              <rect class="wb-dash" x="34" y="130" width="142" height="54" rx="8"/>
-              <text class="wb-s wb-m" x="105" y="160" text-anchor="middle">Upload logo</text>
-              <rect class="wb-p" x="226" y="14" width="104" height="192" rx="14"/>
-              <rect class="wb-indigo" x="226" y="14" width="104" height="40" rx="14"/>
-              <rect class="wb-w" x="242" y="30" width="40" height="8" rx="4"/>
-              <rect class="wb-bd" x="242" y="72" width="60" height="6" rx="3"/>
-              <rect class="wb-b" x="242" y="86" width="72" height="4" rx="2"/><rect class="wb-b" x="242" y="96" width="56" height="4" rx="2"/>
-              <rect class="wb-chip" x="242" y="112" width="72" height="46" rx="6"/>
-              <rect class="wb-indigo" x="242" y="172" width="72" height="20" rx="6"/>
-            </svg>
+          <div class="cs-feature-art cs-art-bare">
+            <video class="wb wb-video" src="workflow-builder-branding.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the Branding panel: choosing a primary colour with the colour picker while the mobile preview updates to match"></video>
           </div>
         </article>
 
@@ -1799,7 +1788,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   var aboutView = document.getElementById("about-view");
   // Each case study has one illustration, shown on its project card or in its case study.
   var cases = [
-    { name: "workflow-builder", art: "wb-art", home: "wb-slot-home", slot: "wb-slot-case" },
+    // Workflow Builder keeps its graphic on the card; its case study shows a video instead.
+    { name: "workflow-builder" },
     { name: "mobile-authenticator", art: "auth-art", home: "auth-slot-home", slot: "auth-slot-case" },
     { name: "verification-analytics", art: "an-art", home: "an-slot-home", slot: "an-slot-case" },
     { name: "results-dashboard", art: "rd-art", home: "rd-slot-home", slot: "rd-slot-case" }
@@ -1812,9 +1802,16 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       var view = document.getElementById("case-" + c.name), active = c.name === name;
       if (!view) return;
       view.hidden = !active;
-      if (active) onCase = true;
+      if (active) {
+        onCase = true;
+        view.querySelectorAll("video[autoplay]").forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+      }
       var art = document.getElementById(c.art), dest = document.getElementById(active ? c.slot : c.home);
-      if (art && dest && art.parentNode !== dest) dest.appendChild(art);
+      if (art && dest && art.parentNode !== dest) {
+        dest.appendChild(art);
+        // Moving a video in the page pauses it, so start it again.
+        if (art.tagName === "VIDEO") { var p = art.play(); if (p && p.catch) p.catch(function () {}); }
+      }
     });
     var onAbout = name === "about";
     if (aboutView) aboutView.hidden = !onAbout;
