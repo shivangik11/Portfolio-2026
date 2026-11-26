@@ -249,7 +249,7 @@ dl { margin: 0; }
 .sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
 h2 {
   font-family: var(--font-display); font-stretch: 62%; font-weight: 800;
-  font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1; letter-spacing: -0.025em;}
+  font-size: clamp(1.6rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -0.025em;}
 .sec-head p { color: var(--muted); }
 
 /* 0 to 1 line */
@@ -262,7 +262,7 @@ h2 {
   background: var(--bg); border: 5px solid var(--ink);
 }
 .stop:nth-child(4)::before { background: var(--ink); }
-.stop h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; line-height: 1.2; }
+.stop h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.2; }
 .stop p { color: var(--muted); font-size: 0.9688rem; line-height: 1.5; max-width: 16rem; }
 .stop .mono { color: var(--muted); }
 
@@ -284,7 +284,7 @@ h2 {
 .mock { background: var(--sky); aspect-ratio: 16 / 10; max-width: 100%; display: grid; place-items: center; overflow: hidden; }
 .mock.purple { background: var(--mint); }
 .body { padding: 1.5rem clamp(1rem, 2.5vw, 1.75rem) 1.75rem; display: flex; flex-direction: column; gap: 0.875rem; }
-.body h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.375rem, 2.4vw, 1.75rem); line-height: 1.15; text-wrap: balance; }
+.body h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.1rem, 1.92vw, 1.4rem); line-height: 1.15; text-wrap: balance; }
 .body p { color: var(--muted); max-width: 34rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.25rem; }
 .tags li { border: 1px solid var(--line); padding: 0.25rem 0.625rem; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -310,7 +310,7 @@ h2 {
 .cs-back { align-self: flex-start; text-decoration: none; color: var(--muted); }
 .cs-back:hover, .cs-link:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .cs-kicker { color: var(--muted); }
-.cs-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 5.4vw, 4.5rem); line-height: 1.04; letter-spacing: -0.035em; text-wrap: pretty; }
+.cs-title { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 4.32vw, 3.6rem); line-height: 1.04; letter-spacing: -0.035em; text-wrap: pretty; }
 .cs-lede { font-size: clamp(1.0625rem, 1.7vw, 1.375rem); line-height: 1.5; color: var(--muted); }
 .cs-facts { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.25rem 2rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
 .cs-facts div { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
@@ -336,7 +336,7 @@ h2 {
 .line.five { grid-template-columns: repeat(5, minmax(0, 1fr)); --track: var(--ink); margin-top: 1rem; }
 .five .stop:nth-child(4)::before { background: var(--bg); }
 .five .stop:nth-child(5)::before { background: var(--ink); }
-.five .stop h3 { font-size: 1.0625rem; }
+.five .stop h3 { font-size: 0.85rem; }
 /* "Test the flow" to "Understand the results": a dotted stretch of the line. */
 .five .stop:nth-child(4)::after {
   content: ""; position: absolute; top: 0.5625rem; left: 1.5rem; right: 0; height: 6px;
@@ -352,7 +352,7 @@ h2 {
 .cs-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.75rem 1.25rem; }
 .cs-steps > li { display: flex; flex-direction: column; gap: 0.625rem; border-top: 3px solid var(--ink); padding-top: 0.875rem; min-width: 0; }
 .cs-steps .num { color: var(--muted); font-variant-numeric: tabular-nums; }
-.cs-steps h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.1875rem; line-height: 1.2; }
+.cs-steps h3 { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
 .cs-steps p { font-size: 0.9375rem; line-height: 1.5; }
 .cs-steps ul { display: flex; flex-direction: column; gap: 0.25rem; color: var(--muted); font-size: 0.875rem; line-height: 1.45; }
 .cs-steps .out { margin-top: auto; padding-top: 0.625rem; border-top: 1px solid var(--line); font-size: 0.875rem; font-weight: 600; }
@@ -373,7 +373,7 @@ h2 {
 .cs-levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 .cs-levels li { border: 1px solid var(--line); padding: clamp(1rem, 2.5vw, 1.5rem); display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
 .cs-levels .mono { color: var(--muted); }
-.cs-levels h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; line-height: 1.2; }
+.cs-levels h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.2; }
 .cs-levels .q { font-family: var(--font-display); font-size: 1.0625rem; line-height: 1.4; border-left: 4px solid var(--cs-hl); padding-left: 0.875rem; }
 .cs-levels .need { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--line); }
 .cs-levels .need b { display: block; color: var(--ink); font-size: 0.8125rem; font-weight: 600; margin-bottom: 0.25rem; }
@@ -382,7 +382,9 @@ h2 {
 .cs-compare { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
 .cs-card { border: 1px solid var(--line); padding: clamp(1.25rem, 3vw, 2.25rem); display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
 .cs-card .mono { color: var(--muted); }
-.cs-card h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.375rem, 2.6vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+.cs-shot { margin: 0; background: #000; border-radius: 12px; padding: clamp(1.25rem, 3vw, 2rem) 1rem; display: flex; justify-content: center; }
+.cs-shot img { display: block; height: min(48vh, 416px); width: auto; max-width: 100%; object-fit: contain; }
+.cs-card h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.1rem, 2.08vw, 1.6rem); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
 .cs-card dl { display: flex; flex-direction: column; }
 .cs-card dl div { padding-block: 0.875rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.25rem; }
 .cs-card dt { font-weight: 600; }
@@ -405,7 +407,7 @@ h2 {
 .cs-feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem 3rem; align-items: center; }
 .cs-feature:nth-child(even) .cs-feature-art { order: -1; }
 .cs-feature-text { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
-.cs-feature-text h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.375rem, 2.6vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+.cs-feature-text h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.1rem, 2.08vw, 1.6rem); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
 .cs-feature-text p { color: var(--muted); }
 .cs-feature-art { border: 1px solid var(--line); background: var(--wb-canvas); min-width: 0; }
 .wb-dash { fill: none; stroke: var(--wb-mid); stroke-width: 1.5; stroke-dasharray: 5 4; }
@@ -493,7 +495,7 @@ main[id^="case-"] { --cs-hl: var(--sky); --cs-hl-ink: var(--n-sign); }
 }
 
 .cs-end { display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start; }
-.cs-end p { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3.4vw, 2.5rem); line-height: 1.15; letter-spacing: -0.025em; text-wrap: pretty; }
+.cs-end p { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.2rem, 2.72vw, 2rem); line-height: 1.15; letter-spacing: -0.025em; text-wrap: pretty; }
 .cs-btn { display: inline-block; background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 600; padding: 0.875rem 1.375rem; }
 .cs-btn:hover { background: var(--muted); }
 .cs-link { font-weight: 600; text-underline-offset: 4px; align-self: flex-start; }
@@ -519,7 +521,7 @@ main[id^="case-"] { --cs-hl: var(--sky); --cs-hl-ink: var(--n-sign); }
 .cs-btn.ghost:hover { background: var(--ink); color: var(--bg); }
 .about-end { margin-top: clamp(1rem, 3vw, 2rem); padding-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--line); }
 .about-head { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.25rem 3rem; align-items: end; padding-bottom: clamp(1.5rem, 4vw, 2.75rem); border-bottom: 1px solid var(--line); }
-.about-head h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; }
+.about-head h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 5.6vw, 4.4rem); line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; }
 .about-head p { font-size: clamp(1rem, 1.4vw, 1.1875rem); line-height: 1.55; color: var(--muted); }
 .journey { list-style: none; margin: 0; padding: clamp(1.5rem, 4vw, 2.5rem) 0 0; }
 .j-stop { --stop: var(--sky); --gap: clamp(1.75rem, 3.5vw, 2.5rem); position: relative; padding-bottom: var(--gap); }
@@ -534,7 +536,7 @@ main[id^="case-"] { --cs-hl: var(--sky); --cs-hl-ink: var(--n-sign); }
 .j-stop .stop-body::after { content: ""; position: absolute; left: 0; top: 0.1rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--bg); border: 5px solid var(--stop); box-sizing: border-box; }
 .j-stop.now .stop-body::after { border-color: var(--ink); background: var(--stop); }
 .j-stop .where { display: block; font-size: 0.8125rem; color: var(--muted); margin-bottom: 0.25rem; }
-.j-stop h3 { font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 1.625rem); font-weight: 600; line-height: 1.2; margin: 0; }
+.j-stop h3 { font-family: var(--font-display); font-size: clamp(1rem, 1.76vw, 1.3rem); font-weight: 600; line-height: 1.2; margin: 0; }
 .j-stop .org { margin: 0.2rem 0 0.6rem; font-weight: 600; }
 .j-stop p { margin: 0; max-width: 46rem; line-height: 1.55; }
 .j-stop .org + p { color: var(--muted); }
@@ -544,7 +546,7 @@ main[id^="case-"] { --cs-hl: var(--sky); --cs-hl-ink: var(--n-sign); }
   .j-stop .j-when { position: static; display: block; margin-bottom: 0.2rem; }
 }
 .contact .sign { align-items: flex-end; padding: 0; background: none; border: 0; box-shadow: none; color: var(--on-fill); --sign-muted: var(--on-fill-muted); }
-.contact h2 { flex: 1 1 20rem; font-size: clamp(2.5rem, 8vw, 6rem); color: var(--accent); }
+.contact h2 { flex: 1 1 20rem; font-size: clamp(2rem, 6.4vw, 4.8rem); color: var(--accent); }
 .contact ul { display: grid; gap: 0.5rem; flex: 0 1 22rem; min-width: 0; }
 .contact li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--sign-muted); padding-bottom: 0.5rem; }
 .contact li span:first-child { color: var(--sign-muted); }
@@ -1527,6 +1529,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="cs-compare">
         <article class="cs-card" data-reveal>
           <p class="mono">Before</p>
+          <figure class="cs-shot"><img src="mobile-before.png" width="838" height="1654" loading="lazy" alt="Older version of the 1Kosmos app home screen: a black header with the account name, a mostly empty white screen, and a large Scan QR button at the bottom"></figure>
           <h3>QR leads the experience</h3>
           <dl>
             <div><dt>Dominant action</dt><dd>QR scanning occupies the primary screen area.</dd></div>
@@ -1535,6 +1538,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         </article>
         <article class="cs-card after" data-reveal style="--d: 0.15s">
           <p class="mono">After</p>
+          <figure class="cs-shot"><img src="mobile-after.png" width="792" height="1590" loading="lazy" alt="New version of the 1Kosmos app home screen: My Accounts with the default account's one-time code 234556, a copy button and a countdown, other accounts listed below, and a Scan QR code button at the bottom"></figure>
           <h3>The code becomes the hero</h3>
           <dl>
             <div><dt>Visible on arrival</dt><dd>The code is immediately available on Home.</dd></div>
@@ -1547,8 +1551,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
   <section class="cs-sec">
     <div class="wrap">
+      <p class="cs-label mono">Closing statement</p>
       <div class="cs-end">
-        <p data-reveal>No new functionality was added. The hierarchy changed, and the code is now there when the app opens.</p>
+        <p data-reveal>Event logs showed people signing in with the one-time code more and more, not the QR scanner. So the design followed their behaviour: the code moved to the home screen, and scanning stayed one tap away.</p>
         <a class="cs-btn" href="#work">&larr; Back to all work</a>
       </div>
     </div>
