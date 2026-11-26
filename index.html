@@ -1,4 +1,17 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Shivangi Khandelwal is a product designer in New York / New Jersey who designs and builds products from 0 to 1, currently designing identity products at 1Kosmos.">
+<meta property="og:title" content="Shivangi Khandelwal">
+<meta property="og:description" content="Product designer taking products from zero to one. Case studies in identity verification, analytics and authentication.">
+<style>
+  :root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body { margin: 0; font-family: system-ui, -apple-system, sans-serif; font-size: 14px; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
 <title>Shivangi Khandelwal</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
@@ -479,6 +492,37 @@ main[id^="case-"] { --cs-hl: var(--sky); --cs-hl-ink: var(--n-sign); }
 }
 
 /* Contact */
+/* About: the journey drawn as a subway line, one stop per chapter */
+.about-page { padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 7vw, 6rem); color: var(--ink); }
+.about-btns { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.cs-btn.ghost { background: none; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.cs-btn.ghost:hover { background: var(--ink); color: var(--bg); }
+.about-end { margin-top: clamp(1rem, 3vw, 2rem); padding-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--line); }
+.about-head { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.25rem 3rem; align-items: end; padding-bottom: clamp(1.5rem, 4vw, 2.75rem); border-bottom: 1px solid var(--line); }
+.about-head h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; }
+.about-head p { font-size: clamp(1rem, 1.4vw, 1.1875rem); line-height: 1.55; color: var(--muted); }
+.journey { list-style: none; margin: 0; padding: clamp(1.5rem, 4vw, 2.5rem) 0 0; }
+.j-stop { --stop: var(--sky); --gap: clamp(1.75rem, 3.5vw, 2.5rem); position: relative; padding-bottom: var(--gap); }
+.j-stop.grad { --stop: var(--mint); }
+.j-stop.work { --stop: var(--deep-green); }
+.j-stop.now { --stop: #F7E24A; }
+.j-stop .stop-body { position: relative; margin-left: 11rem; padding-left: 2.5rem; }
+.j-stop .j-when { position: absolute; left: -11rem; top: 0.15rem; color: var(--muted); font-size: 0.875rem; }
+/* The line: a thick coloured track per stop, the station a white ring on top */
+.j-stop .stop-body::before { content: ""; position: absolute; left: 0.5rem; top: 0.4rem; bottom: calc(-1 * var(--gap) - 0.4rem); width: 8px; background: var(--stop); }
+.j-stop:last-child .stop-body::before { display: none; }
+.j-stop .stop-body::after { content: ""; position: absolute; left: 0; top: 0.1rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--bg); border: 5px solid var(--stop); box-sizing: border-box; }
+.j-stop.now .stop-body::after { border-color: var(--ink); background: var(--stop); }
+.j-stop .where { display: block; font-size: 0.8125rem; color: var(--muted); margin-bottom: 0.25rem; }
+.j-stop h3 { font-family: var(--font-display); font-size: clamp(1.25rem, 2.2vw, 1.625rem); font-weight: 600; line-height: 1.2; margin: 0; }
+.j-stop .org { margin: 0.2rem 0 0.6rem; font-weight: 600; }
+.j-stop p { margin: 0; max-width: 46rem; line-height: 1.55; }
+.j-stop .org + p { color: var(--muted); }
+@media (max-width: 760px) {
+  .about-head { grid-template-columns: 1fr; }
+  .j-stop .stop-body { margin-left: 0; }
+  .j-stop .j-when { position: static; display: block; margin-bottom: 0.2rem; }
+}
 .contact .sign { align-items: flex-end; padding: 0; background: none; border: 0; box-shadow: none; color: var(--on-fill); --sign-muted: var(--on-fill-muted); }
 .contact h2 { flex: 1 1 20rem; font-size: clamp(2.5rem, 8vw, 6rem); color: var(--accent); }
 .contact ul { display: grid; gap: 0.5rem; flex: 0 1 22rem; min-width: 0; }
@@ -545,6 +589,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <a class="mono" id="brand" href="#home" style="text-decoration: none">Portfolio 2026</a>
     <nav class="mono" aria-label="Sections">
       <a href="#work">Work</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
     <span class="mono clock">New York <span id="clock">ET</span></span>
@@ -942,6 +987,77 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     </div>
   </section>
   </div>
+</main>
+
+<main id="about-view" hidden>
+  <section class="about-page">
+    <div class="wrap">
+      <div class="about-head" data-reveal>
+        <h1>From buildings to products.</h1>
+        <p>I trained as an architect, designing spaces around how people move through them. Along the way I moved from buildings to screens. The habits came with me: start from the person, sketch the whole system, then sweat the details. These are the stops so far.</p>
+      </div>
+      <ol class="journey">
+        <li class="j-stop arch" data-reveal>
+          <div class="stop-body">
+            <span class="j-when mono">2015 &ndash; 2020</span>
+            <span class="where mono">Pune, India</span>
+            <h3>Bachelor of Architecture</h3>
+            <p class="org">Savitribai Phule Pune University, BNCA</p>
+            <p>Five years of studio, learning to design for people, space and structure, and to defend every decision in a crit.</p>
+          </div>
+        </li>
+        <li class="j-stop grad" data-reveal>
+          <div class="stop-body">
+            <span class="j-when mono">2021 &ndash; 2023</span>
+            <span class="where mono">Boulder, Colorado</span>
+            <h3>M.S. Creative Technology and Design</h3>
+            <p class="org">University of Colorado Boulder, ATLAS</p>
+            <p>Where I made the switch to screens. I learned to prototype in code, test with users and build interactive work. As a student designer I also redesigned the Environmental Center&rsquo;s website, which brought 11% more traffic.</p>
+          </div>
+        </li>
+        <li class="j-stop grad" data-reveal>
+          <div class="stop-body">
+            <span class="j-when mono">Summer 2022</span>
+            <span class="where mono">California</span>
+            <h3>Product Design Intern</h3>
+            <p class="org">Mindtickle</p>
+            <p>My first product team. I simplified the picker and uploader flows, raising engagement by 15% and cutting customer complaints in half.</p>
+          </div>
+        </li>
+        <li class="j-stop work" data-reveal>
+          <div class="stop-body">
+            <span class="j-when mono">2023 &ndash; 2024</span>
+            <span class="where mono">New York</span>
+            <h3>Product Designer</h3>
+            <p class="org">Info Origin</p>
+            <p>Designed an AI-powered B2B app builder, including onboarding, interactive guides and micro-interactions, based on more than 100 user interviews.</p>
+          </div>
+        </li>
+        <li class="j-stop work" data-reveal>
+          <div class="stop-body">
+            <span class="j-when mono">2023</span>
+            <span class="where mono">Consulting</span>
+            <h3>Product Designer, Consultant</h3>
+            <p class="org">1Kosmos</p>
+            <p>Redesigned the end-user authentication and enrollment journeys of the 1Kosmos desktop authenticator. This was my first project in identity.</p>
+          </div>
+        </li>
+        <li class="j-stop now" data-reveal>
+          <div class="stop-body">
+            <span class="j-when mono">2025 &ndash; now</span>
+            <span class="where mono">New Jersey</span>
+            <h3>Product Designer</h3>
+            <p class="org">1Kosmos</p>
+            <p>Designing across the identity platform, from Workflow Builder built 0&rarr;1 to analytics, authenticators and AI. I also led the work that made the end-user experience WCAG 2.2 AA certified.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="cs-end about-end" data-reveal>
+        <p>That&rsquo;s the journey so far. Here&rsquo;s what I&rsquo;ve been building lately.</p>
+        <div class="about-btns"><a class="cs-btn" href="#work">See my work</a><a class="cs-btn ghost" href="#contact">Get in touch</a></div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <main id="case-verification-analytics" hidden>
@@ -1680,6 +1796,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
   // Two views in one page: the portfolio, and the case study at #workflow-builder.
   var homeView = document.getElementById("home-view");
+  var aboutView = document.getElementById("about-view");
   // Each case study has one illustration, shown on its project card or in its case study.
   var cases = [
     { name: "workflow-builder", art: "wb-art", home: "wb-slot-home", slot: "wb-slot-case" },
@@ -1699,8 +1816,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       var art = document.getElementById(c.art), dest = document.getElementById(active ? c.slot : c.home);
       if (art && dest && art.parentNode !== dest) dest.appendChild(art);
     });
-    homeView.hidden = onCase;
-    if (onCase) {
+    var onAbout = name === "about";
+    if (aboutView) aboutView.hidden = !onAbout;
+    homeView.hidden = onCase || onAbout;
+    if (onCase || onAbout) {
       window.scrollTo(0, 0);
     } else if (name === "home") {
       window.scrollTo(0, 0);
@@ -1900,4 +2019,5 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 })();
 </script>
 
-</body></html>
+</body>
+</html>
