@@ -112,20 +112,20 @@ gtag("config", "G-32PN422EEZ", { send_page_view: false });
   --font-body: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-mono: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif; /* small labels */
 }
-/* Day and night themes. Day is the default; the toggle in the top bar switches to
-   night and the choice is stored as data-theme on <html>. */
+/* Day and night themes, set as data-mode on <html>. The script after this style
+   picks Night from 5 pm to 6 am New York time; the top-bar switch overrides it. */
 :root { color-scheme: light; }
-:root[data-theme="dark"] { color-scheme: dark; --bg: #111413; --surface: #191D1B; --ink: #ECECE8; --muted: #A2A6A2; --line: #2C312E; --n-sign: #1E2421; --hero-ink: #F1EDE4; --hero-muted: #A9B5AE; --hero-line: #2C312E; --mock: #262B28; --hero-sky: #18213A; --sky-deep: #2A3557; }
+:root[data-mode="dark"] { color-scheme: dark; --bg: #111413; --surface: #191D1B; --ink: #ECECE8; --muted: #A2A6A2; --line: #2C312E; --n-sign: #1E2421; --hero-ink: #F1EDE4; --hero-muted: #A9B5AE; --hero-line: #2C312E; --mock: #262B28; --hero-sky: #18213A; --sky-deep: #2A3557; }
 /* Night hero: dark sky, a pale moon instead of the sun, dimmer clouds */
-:root[data-theme="dark"] .scene .rays { display: none; }
-:root[data-theme="dark"] .scene .sun { fill: #F2EDD7; }
-:root[data-theme="dark"] .scene .cloud rect { fill: #3A4566; }
+:root[data-mode="dark"] .scene .rays { display: none; }
+:root[data-mode="dark"] .scene .sun { fill: #F2EDD7; }
+:root[data-mode="dark"] .scene .cloud rect { fill: #3A4566; }
 .theme-btn { display: inline-flex; align-items: center; gap: 0.4rem; background: none; border: 1px solid var(--line); color: inherit; font: inherit; padding: 0.3rem 0.75rem; border-radius: 999px; cursor: pointer; }
 .theme-btn:hover { border-color: var(--ink); }
 .theme-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .theme-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.theme-btn .moon, :root[data-theme="dark"] .theme-btn .sunico { display: none; }
-:root[data-theme="dark"] .theme-btn .moon { display: block; }
+.theme-btn .moon, :root[data-mode="dark"] .theme-btn .sunico { display: none; }
+:root[data-mode="dark"] .theme-btn .moon { display: block; }
 
 * { box-sizing: border-box; }
 body {
@@ -155,6 +155,14 @@ ul, ol { list-style: none; }
 .top nav a { text-decoration: none; }
 .top nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; text-decoration-color: var(--ink); }
 .clock { color: var(--muted); }
+/* Brand left, sections centred, clock and theme switch in the right corner */
+.top .top-right { display: flex; align-items: center; gap: 1rem; }
+@media (min-width: 761px) {
+  .top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .top #brand { justify-self: start; }
+  .top nav { justify-self: center; }
+  .top .top-right { justify-self: end; }
+}
 
 /* Hero */
 .hero {
@@ -274,7 +282,7 @@ dl { margin: 0; }
 .cs-art-phone video { display: block; height: min(72vh, 680px); width: auto; max-width: 100%; object-fit: contain; }
 #wb-slot-case, .cs-feature-art.cs-art-bare { background: none; border: 0; padding: 0; }
 #wb-slot-case .wb-video, .cs-art-bare .wb-video { box-shadow: none; }
-#wb-slot-case .wb-video { border-radius: 15px; }
+#wb-slot-case .wb-video, #an-slot-case .wb-video, #rd-slot-case .wb-video { border-radius: 15px; }
 /* A feature whose video needs the full width: text above, video below. */
 .cs-feature.cs-feature-wide { grid-template-columns: minmax(0, 1fr); }
 .cs-features .cs-feature.cs-feature-wide .cs-feature-art { order: 0; }
@@ -378,6 +386,9 @@ h2 {
 .cs-facts dd { margin: 0; font-weight: 500; font-size: 0.9688rem; line-height: 1.4; }
 .cs-art { background: var(--wb-canvas); border: 1px solid var(--line); padding: clamp(0.5rem, 3vw, 2.5rem); }
 .cs-art .wb { box-shadow: 0 18px 50px rgba(30, 42, 68, 0.14); }
+.cs-old { margin: 0 0 clamp(1.5rem, 3vw, 2rem); }
+.cs-old img { border-radius: 12px; }
+.cs-old figcaption { margin-top: 1rem; color: var(--muted); }
 
 .cs-sec { padding-block: clamp(2.75rem, 7vw, 5.5rem); }
 .cs-sec + .cs-sec { border-top: 1px solid var(--line); }
@@ -675,23 +686,36 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 </style>
 <script>
 (function () {
-  var root = document.documentElement, saved = null;
-  try { saved = localStorage.getItem("theme"); } catch (e) {}
-  var dark = saved === "dark"; /* Day unless the visitor picked Night */
-  root.setAttribute("data-theme", dark ? "dark" : "light");
+  /* Theme follows New York time: Night from 5:00 pm to 6:00 am, Day otherwise.
+     Clicking the switch overrides it for the rest of that visit only. */
+  var root = document.documentElement, picked = false;
+  function nyHour() {
+    try {
+      var h = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", hour: "numeric", hourCycle: "h23" }).format(new Date());
+      return parseInt(h, 10) % 24;
+    } catch (e) { return new Date().getHours(); }
+  }
+  function byClock() { var h = nyHour(); return (h >= 17 || h < 6) ? "dark" : "light"; }
   function sync() {
-    var d = root.getAttribute("data-theme") === "dark";
+    var d = root.getAttribute("data-mode") === "dark";
     var b = document.getElementById("theme-btn"), l = document.getElementById("theme-label");
     if (l) l.textContent = d ? "Night" : "Day";
     if (b) b.setAttribute("aria-label", d ? "Switch to day theme" : "Switch to night theme");
   }
+  root.setAttribute("data-mode", byClock());
+  try { localStorage.removeItem("theme"); } catch (e) {}   /* clear choices saved by the older version */
   document.addEventListener("click", function (e) {
     if (!e.target.closest || !e.target.closest("#theme-btn")) return;
-    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (err) {}
+    picked = true;
+    root.setAttribute("data-mode", root.getAttribute("data-mode") === "dark" ? "light" : "dark");
     sync();
   });
+  /* If the page stays open past 6 am or 5 pm, switch over (unless the visitor chose a theme). */
+  setInterval(function () {
+    if (picked) return;
+    var t = byClock();
+    if (root.getAttribute("data-mode") !== t) { root.setAttribute("data-mode", t); sync(); }
+  }, 60000);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sync); else sync();
 })();
 </script>
@@ -704,12 +728,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
+    <div class="top-right">
     <span class="mono clock">New York <span id="clock">ET</span></span>
     <button class="theme-btn mono" id="theme-btn" type="button" aria-label="Switch to night theme">
       <svg class="sunico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
       <span id="theme-label">Day</span>
     </button>
+    </div>
   </div>
 </header>
 
@@ -1191,7 +1217,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div><dt>Built for</dt><dd>Security administrators, enterprise HR</dd></div>
         <div><dt>Deliverables</dt><dd>Spec, working prototype, interaction design</dd></div>
       </dl>
-      <div class="cs-art" id="an-slot-case"></div>
+      <div class="cs-art" id="an-slot-case">
+        <video class="wb wb-video" src="verification-analytics.mp4?v=2" width="2098" height="1572" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the Verification Analytics dashboard: KPI tiles, performance over time, failure reasons and risk signals"></video>
+      </div>
     </div>
   </div>
 
@@ -1237,6 +1265,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <p class="cs-gap" data-reveal>The gap: the outcome was visible. The context wasn&rsquo;t.</p>
         </div>
       </div>
+      <figure class="cs-art cs-old" data-reveal>
+        <img class="wb" src="analytics-old.png" width="2880" height="2000" loading="lazy" alt="The old Usage Analytics screen: three totals for scans completed, verifications passed and total sessions, and a stacked bar chart of verification outcomes by day, with no reasons behind the failures">
+        <figcaption class="mono">Before: the old Usage Analytics screen showed totals and a daily breakdown, but nothing about why verifications failed.</figcaption>
+      </figure>
       <div class="cs-compare">
         <article class="cs-card" data-reveal>
           <p class="mono">Old dashboard</p>
@@ -1377,7 +1409,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div><dt>Built for</dt><dd>Security administrators, enterprise HR</dd></div>
         <div><dt>Deliverables</dt><dd>Spec, working prototype, interaction design</dd></div>
       </dl>
-      <div class="cs-art" id="rd-slot-case"></div>
+      <div class="cs-art" id="rd-slot-case">
+        <video class="wb wb-video" src="verification-results.mp4?v=2" width="2086" height="1572" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the verification results dashboard: personal info, current session details and previous sessions for one user"></video>
+      </div>
     </div>
   </div>
 
@@ -1840,8 +1874,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     { name: "workflow-builder" },
     // Mobile authenticator also keeps its graphic on the card; its case study shows a video.
     { name: "mobile-authenticator" },
-    { name: "verification-analytics", art: "an-art", home: "an-slot-home", slot: "an-slot-case" },
-    { name: "results-dashboard", art: "rd-art", home: "rd-slot-home", slot: "rd-slot-case" }
+    { name: "verification-analytics" },
+    { name: "results-dashboard" }
   ];
   var firstRoute = true;
   function route() {
