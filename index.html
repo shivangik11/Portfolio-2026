@@ -124,6 +124,7 @@ ul, ol { list-style: none; }
 .scene .rope { stroke: var(--cream); stroke-width: 1.5; }
 .scene .kerb, .scene .wheel { fill: var(--route-grey); }
 .scene .car { fill: var(--route-red); }
+.scene .lane { stroke: var(--cream); stroke-width: 5; stroke-dasharray: 26 20; stroke-linecap: round; }
 .scene text { font-family: var(--font-display); font-weight: 800; font-size: 13px; fill: var(--scene-ink); }
 .scene .banner-name { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -644,6 +645,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <g id="sk-front"></g>
           <rect class="ink" y="400" width="1200" height="60"/>
           <rect class="kerb" y="400" width="1200" height="5"/>
+          <line class="lane" x1="0" y1="431" x2="1200" y2="431"/>
           <g class="drive-l"><g transform="translate(800 16)">
             <rect class="car" y="416" width="54" height="14" rx="3"/><rect class="car" x="12" y="406" width="26" height="12" rx="3"/>
             <rect class="cream" x="16" y="409" width="18" height="7"/>
